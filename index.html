@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <script src="./node_modules/web3/dist/web3.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+
+        <h1>Coursetro Instructor</h1>
+        <p> Owner Address :<span id="owner"> </span> 
+        </p>
+
+        <h2 id="instructor"></h2>
+        <img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
+
+        <label for="name" class="col-lg-2 control-label">Instructor Name</label>
+        <input id="name" type="text">
+
+        <label for="name" class="col-lg-2 control-label">Instructor Age</label>
+        <input id="age" type="text">
+
+        <button id="button">Update Instructor</button>
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+    <script>
+       if(typeof web3 !== 'undefined')
+		web3 = new Web3(web3.currentProvider) ;
+	else
+		web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545")) ;
+
+    web3.eth.defaultAccount = web3.eth.accounts[0] ; // defining the account .owner account is on index 0 : For testing the modifier change 0-> any other like 4 and save and refresh and u will see that adress is not allowed to setInstructor and in console it will show "oh no error"
+    
+
+    //defining thr ABI interface of our contract 
+
+    var CoursetroContract = web3.eth.contract([
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getInstructor",
+        "outputs": [
+            {
+                "name": "",
+                "type": "string"
+            },
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "name": "name",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "name": "age",
+                "type": "uint256"
+            }
+        ],
+        "name": "Instructor",
+        "type": "event"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "_fname",
+                "type": "string"
+            },
+            {
+                "name": "_age",
+                "type": "uint256"
+            }
+        ],
+        "name": "setInstructor",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    }
+]) ;
+
+    var Coursetro = CoursetroContract.at('0x17fb4c51a9b07be5790e94371ff146c524bdd6ff') ;
+    console.log(Coursetro) ;
+
+    //binding the event into the Coursetro contract
+    var instructorEvent = Coursetro.Instructor() ;
+
+    instructorEvent.watch(function(error, result) {
+
+        if(!error)
+        {
+            $("#loader").hide();
+            $("#instructor").html(result.args.name + ' (' + result.args.age + ' year old )') ; 
+        }
+        else
+        {
+              $("#loader").hide();
+              console.log(error) ;
+        }
+    }) ;
+
+    $("#button").click(function()
+    {
+         $("#loader").show();
+        Coursetro.setInstructor($("#name").val() , $("#age").val() ,(err, res) => {
+                if(err)
+                {
+                    $("#loader").hide();
+                    console.log("oh no"); //or display the error in ui
+                }
+
+        }) ; 
+        
+    }) ;
+    </script>
+
+</body>
+</html>
