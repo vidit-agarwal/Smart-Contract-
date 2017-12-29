@@ -26,4 +26,10 @@ http://remix.ethereum.org
 
 ### Now we will add Soliidity Events 
 <br /> Events allow the convenient usage of the EVM Logging facilities which in turn can be used to CALL JS callbacks in user interface of a `DAPP`
+<br /> EVENTS : http://solidity.readthedocs.io/en/develop/
+
+### Function Modifiers
+<br /> Modifiers allows developers to control the behaviour of functions and smart contract
+<br /> Like Only the developer could control certain functionality
+
 
