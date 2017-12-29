@@ -32,4 +32,8 @@ http://remix.ethereum.org
 <br /> Modifiers allows developers to control the behaviour of functions and smart contract
 <br /> Like Only the developer could control certain functionality
 
+### Solidity Mapping & Structs
+<br /> Solidity provides a way to define new types in the form of structs
+<br /> Struct types can be used inside mappings and arrays and they can itself contain mappings and arrays
+<br /> http://solidity.readthedocs.io/en/develop/
 
