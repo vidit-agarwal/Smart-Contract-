@@ -2,6 +2,7 @@ pragma solidity ^0.4.18 ;
 
 //for inheritence
 
+//base contract
 contract Owned {
     address owner ;
     function Owned() public {
@@ -30,7 +31,12 @@ contract Courses is Owned {
     
     address [] public instructorAccts ;
     
-    event instructorInfo () ;
+    event instructorInfo (
+        bytes16 fname ,
+        bytes16 lname ,
+        uint age 
+        
+        ) ;
     
      function setInstructor(address _address , bytes16 _fname , bytes16 _lname , uint _age) onlyOwner public {
           var instructor = instructors[_address] ;
@@ -40,6 +46,7 @@ contract Courses is Owned {
           instructor.lname = _lname ;
           
           instructorAccts.push(_address) -1 ;
+          instructorInfo(_fname , _lname , _age) ;
           
      }
      
