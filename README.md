@@ -51,3 +51,8 @@ http://remix.ethereum.org
 <br /> Go to `Compile` -> `Details`-> Copy `ABI INTERFACE` -> Paste into `Index.html at web3.eth.contract()` ;
 <br /> Restart the computer to see the UI changes reflected
 
+### Screenshot
+![Preview 1](/screenshot/1.png)
+![Preview 2](/screenshot/2.png)
+
+
