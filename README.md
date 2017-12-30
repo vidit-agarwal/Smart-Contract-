@@ -37,3 +37,17 @@ http://remix.ethereum.org
 <br /> Struct types can be used inside mappings and arrays and they can itself contain mappings and arrays
 <br /> http://solidity.readthedocs.io/en/develop/
 
+### Setup a Proper server environment for running the smart contract 
+<br /> `It is different from running on localhost`
+<br /> Open the console in the project folder
+<br /> Install lite-server : `npm install lite-server --save-dev`
+<br /> Open Package.json file : Add ` "dev": "lite-server"` in "scripts" 
+<br /> Run command : `npm run dev`
+<br /> Install `MetaMask` as a chrome extension : `MetaMask` allows developers to connect to test ethereum network as well as real ethereum blockchain
+<br /> Open the extension .
+<br /> Change it to `Ropston Test Network`
+<br /> Click on `Buy Focet`
+<br /> Now go back to remix ide .Refresh the ide .Change Environment to `Inspected Web3` .
+<br /> Go to `Compile` -> `Details`-> Copy `ABI INTERFACE` -> Paste into `Index.html at web3.eth.contract()` ;
+<br /> 
+
