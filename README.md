@@ -49,5 +49,5 @@ http://remix.ethereum.org
 <br /> Click on `Buy Focet`
 <br /> Now go back to remix ide .Refresh the ide .Change Environment to `Inspected Web3` .
 <br /> Go to `Compile` -> `Details`-> Copy `ABI INTERFACE` -> Paste into `Index.html at web3.eth.contract()` ;
-<br /> 
+<br /> Restart the computer to see the UI changes reflected
 
